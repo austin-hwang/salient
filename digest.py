@@ -15,7 +15,7 @@ import yahoo_finance as yf
 
 # quandl.ApiConfig.api_key = "dpWaM-T_pzLD58Hy_wjH"
 
-SAMPLE_SIZE = 10
+SAMPLE_SIZE = 100
 
 
 def camelcase(string):
@@ -66,6 +66,7 @@ def digest(symbol):
                            compute_stdev_from_mean(symbol, field, data) is not None and
                            compute_stdev_from_mean(symbol, field, data) != "infinity" and
                            compute_stdev_from_mean(symbol, field, data) < -2.0],
+        'related': random.sample(related, 10)
     }
 
 
