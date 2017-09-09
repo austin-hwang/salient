@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>SAILIENT</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font: 400 15px Lato, sans-serif;
+            line-height: 1.8;
+            color: #818181;
+        }
+
+        h2 {
+            font-size: 24px;
+            text-transform: uppercase;
+            color: #303030;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            color: #303030;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .jumbotron {
+            background-color: #00D4B1;
+            color: #fff;
+            padding: 100px 25px;
+            font-family: Montserrat, sans-serif;
+        }
+
+        .container-fluid {
+            padding: 30px 50px;
+        }
+
+        .bg-grey {
+            background-color: #f6f6f6;
+        }
+
+        .logo-small {
+            color: #00D4B1;
+            font-size: 50px;
+        }
+
+        .logo {
+            color: #00D4B1;
+            font-size: 200px;
+        }
+
+        .thumbnail {
+            padding: 0 0 15px 0;
+            border: none;
+            border-radius: 0;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            margin-bottom: 10px;
+        }
+
+        .carousel-control.right, .carousel-control.left {
+            background-image: none;
+            color: #00D4B1;
+        }
+
+        .carousel-indicators li {
+            border-color: #00D4B1;
+        }
+
+        .carousel-indicators li.active {
+            background-color: #00D4B1;
+        }
+
+        .item h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            font-weight: 400;
+            font-style: italic;
+            margin: 70px 0;
+        }
+
+        .item span {
+            font-style: normal;
+        }
+
+        .panel {
+            border: 1px solid #00D4B1;
+            border-radius: 0 !important;
+            transition: box-shadow 0.5s;
+        }
+
+        .panel:hover {
+            box-shadow: 5px 0px 40px rgba(0, 0, 0, .2);
+        }
+
+        .panel-footer .btn:hover {
+            border: 1px solid #00D4B1;
+            background-color: #fff !important;
+            color: #00D4B1;
+        }
+
+        .panel-heading {
+            color: #fff !important;
+            background-color: #00D4B1 !important;
+            padding: 25px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .panel-footer {
+            background-color: white !important;
+        }
+
+        .panel-footer h3 {
+            font-size: 32px;
+        }
+
+        .panel-footer h4 {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .panel-footer .btn {
+            margin: 15px 0;
+            background-color: #00D4B1;
+            color: #fff;
+        }
+
+        .navbar {
+            margin-bottom: 0;
+            background-color: #00D4B1;
+            z-index: 9999;
+            border: 0;
+            font-size: 12px !important;
+            line-height: 1.42857143 !important;
+            letter-spacing: 4px;
+            border-radius: 0;
+            font-family: Montserrat, sans-serif;
+        }
+
+        .navbar li a, .navbar .navbar-brand {
+            color: #fff !important;
+        }
+
+        .navbar-nav li a:hover, .navbar-nav li.active a {
+            color: #00D4B1 !important;
+            background-color: #fff !important;
+        }
+
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+            color: #fff !important;
+        }
+
+        footer .glyphicon {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #00D4B1;
+        }
+
+        .slideanim {
+            visibility: hidden;
+        }
+
+        .slide {
+            animation-name: slide;
+            -webkit-animation-name: slide;
+            animation-duration: 1s;
+            -webkit-animation-duration: 1s;
+            visibility: visible;
+        }
+
+        @keyframes slide {
+            0% {
+                opacity: 0;
+                transform: translateY(70%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0%);
+            }
+        }
+
+        @-webkit-keyframes slide {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(70%);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: translateY(0%);
+            }
+        }
+
+        @media screen and (max-width: 1000px) {
+            .col-sm-6 {
+                text-align: center;
+                margin: 25px 0;
+            }
+
+            .btn-lg {
+                width: 100%;
+                margin-bottom: 35px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .logo {
+                font-size: 150px;
+            }
+        }
+
+        td {
+            border: 1px solid #AAA;
+            padding: 2%;
+        }
+
+        td.analysis {
+            font-size: 1em;
+        }
+
+        #news p {
+            font-size: 2em;
+        }
+    </style>
+    <script>
+
+        var dictionary = {
+            'price': "Price",
+            'ppe': "Price/Earnings",
+            'volume': "Trading Volume (last 24hrs)",
+            'market_cap': "Market Capitalization",
+            'div_yield': "Dividend Yield",
+            'percent_change': "Percent Price Change (last 24hrs)",
+            'avg_daily_volume': "Average Daily Trading Volume",
+            'peg': "Price/Earnings to Growth"
+        };
+
+        function sendPost() {
+            var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+            xmlhttp.open('POST', 'http://127.0.0.1:1234/send-argument', true);
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(JSON.stringify({title: document.getElementById("stock-search").value}));
+
+            getData();
+
+            $("#stock-name").text(document.getElementById("stock-search").value);
+            $("#info").hide();
+            $("#loading").show();
+            $("#salient-features").html("<tr>\n" +
+                "                <th>Feature</th>\n" +
+                "                <th>Value</th>\n" +
+                "                <th>Percentile</th>\n" +
+                "                <th>Analysis</th>\n" +
+                "            </tr>");
+            $("#salient-features").hide();
+            $("#salient-title").hide();
+            $("#news").hide();
+            $("#chart").hide();
+        }
+
+        $(document).ready(function () {
+            $("#search-button").click(sendPost);
+        });
+
+        function getData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://127.0.0.1:1234/send-data', true);
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+//                        console.log(xhr.responseText);
+                        var result = JSON.parse(xhr.responseText);
+                        processResult(result);
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        function processResult(data) {
+
+            console.log(data);
+
+            $("#loading").hide();
+
+            $("#salient-title").show();
+            $("#salient-features").show();
+            $("#news").show();
+            $("#chart").show();
+
+            data.salient_fields.forEach(function (entry) {
+                $("#salient-features").append("<tr><td><b>" + dictionary[entry] + "</b></td><td>" + data.features[entry].value + "</td><td>" + parseFloat(data.features[entry].percentile-1).toFixed(0) + "%</td><td class='analysis'>" + getAnalysis(entry) + "</td></tr>");
+            });
+        }
+
+        function getAnalysis(field) {
+            if (field == "ppe") {
+                return "This stock has a very high price-per-earnings ratio, which indicates that investors are expecting high future returns for this stock. However, this may also indicate a bubble or \"overhyping\" of the stock";
+            } else if (field == "price") {
+                return "This stock has a very high price, which means that it has a high barrier to entry. It also may represent a bubble.";
+            } else if (field == "volume") {
+                return "This stock has a very high trading volume, which means that it is very popular right now.";
+            } else if (field == "market_cap") {
+                return "This stock has a high market captialization, which means that the company is relatively stable.";
+            } else if (field == "div_yield") {
+                return "This stock has a high dividend yield, which means that the company returns much of its profits to the investors. It may also mean that the company is not very interested in growth.";
+            } else if (field == "percent_change") {
+                return "This stock has recently grown very rapidly.";
+            } else if (field == "avg_daily_volume") {
+                return "This stock has a high average daily trading volume, which means that it has been consistently popular over time.";
+            } else if (field == "peg") {
+                return "This stock has a high Price/Earnings to Growth ratio, which means that the company has a relatively high potential for future growth.";
+            }
+        }
+    </script>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+
+
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#myPage"><img src="logo.png" alt="Logo" style="width:100;height:90px;"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#comparison">COMPARE</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#services">SERVICES</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+    <h1>Sailient</h1>
+    <p>Understand Your Stock</p>
+    <div class="input-group">
+        <input id="stock-search" onkeydown="if (event.keyCode == 13) {sendPost();}" type="search"
+               class="form-control" size="50" placeholder="Search Stocks" required>
+        <div class="input-group-btn">
+            <button id="search-button" type="button" class="btn btn-danger">Search</button>
+        </div>
+    </div>
+</div>
+
+<!-- Container (Compare Section) -->
+<div id="comparison" class="container-fluid">
+    <div class="text-center">
+        <h1 id="stock-name"></h1>
+    </div>
+    <div class="text-center">
+        <h2 id="info" style="display:none">Query a stock in the searchbar above.</h2>
+    </div>
+    <div class="text-center">
+        <h4 id="loading" style="display:none">LOADING...</h4>
+    </div>
+    <!--<img id="chart" src="chart.png" style="display: none; width: 50%; margin: 2% 25%;">-->
+    <div class="text-center">
+        <h2 id="salient-title" style="display:none">Salient Features</h2>
+        <table id="salient-features"
+               style="display:none; width: 80%; font-color: black; margin: 2% 10%; text-align: left; font-size: 1.5em;">
+            <tr>
+                <th>Feature</th>
+                <th>Value</th>
+                <th>Percentile</th>
+                <th>Analysis</th>
+            </tr>
+        </table>
+    </div>
+    <div class="text-center" id="news" style="display: none">
+        <h2>In the News</h2>
+        <p>... promised 50,000 jobs and $5 billion in capital expenditures for the city that proves it has the best
+            assets and incentives...</p>
+        <p>... Will the recent positive trend continue leading up to the stock's next earnings release, or is it due for
+            a pullback?...</p>
+        <p>... stock last week reached fresh all-time highs and now is higher by just about 40% for the year...</p>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Add smooth scrolling to all links in navbar + footer link
+        $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+
+                // Store hash
+                var hash = this.hash;
+
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 900, function () {
+
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+                });
+            } // End if
+        });
+
+        $(window).scroll(function () {
+            $(".slideanim").each(function () {
+                var pos = $(this).offset().top;
+
+                var winTop = $(window).scrollTop();
+                if (pos < winTop + 600) {
+                    $(this).addClass("slide");
+                }
+            });
+        });
+    })
+</script>
+
+</body>
+</html>

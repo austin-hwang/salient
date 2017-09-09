@@ -15,7 +15,7 @@ import yahoo_finance as yf
 
 # quandl.ApiConfig.api_key = "dpWaM-T_pzLD58Hy_wjH"
 
-SAMPLE_SIZE = 100
+SAMPLE_SIZE = 50
 
 
 def camelcase(string):
