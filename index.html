@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+         <style>
+            body {
+                font-family: 'Century Gothic', sans-serif;
+                font-size: 18px;
+              }
+        
+            #data {
+		    	padding: 20px;
+		    	padding-top: 20px;
+            }    
+        </style> 
+    </head>
+    <body>
+        <div id = "data">
+                Company name: <input type="text" id='jtitle' onkeydown="if (event.keyCode == 13) {sendPost();}">
+        </div>
+        <script>
+            function sendPost()
+            {
+            var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+            xmlhttp.open('POST', 'http://127.0.0.1:1234/send-argument', true);
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(JSON.stringify({ title: document.getElementById("jtitle").value}));
+            }
+        </script>
+    <div id = "jsonFile"></div>
+    <script src='script.js'></script>
+    </body>
+</html>
