@@ -1,3 +1,7 @@
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
+
 import sys
 import json
 # import quandl
@@ -11,7 +15,7 @@ import yahoo_finance as yf
 
 # quandl.ApiConfig.api_key = "dpWaM-T_pzLD58Hy_wjH"
 
-SAMPLE_SIZE = 100
+SAMPLE_SIZE = 10
 
 
 def camelcase(string):
@@ -33,14 +37,17 @@ def digest(symbol):
 
     data = compile_data(related)
 
-    print('\n\n')
+    if len(data) == 0 or symbol not in data:
+        return {'error': 'no data'}
 
-    for field in fields:
-        print(field, ">>>", "PERCENTILE:", compute_percentile(symbol, field, data), "STDEVS:",
-              compute_stdev_from_mean(symbol, field, data), "STDEV:", compute_std(field, data), "MEAN:",
-              compute_mean(field, data))
-
-    print('\n\n')
+    # print('\n\n')
+    #
+    # for field in fields:
+    #     print(field, ">>>", "PERCENTILE:", compute_percentile(symbol, field, data), "STDEVS:",
+    #           compute_stdev_from_mean(symbol, field, data), "STDEV:", compute_std(field, data), "MEAN:",
+    #           compute_mean(field, data))
+    #
+    # print('\n\n')
 
     return {
         'sample_size': SAMPLE_SIZE,
@@ -48,16 +55,17 @@ def digest(symbol):
             'value': data[symbol][field],
             'percentile': compute_percentile(symbol, field, data),
             'stddevs_from_mean': compute_stdev_from_mean(symbol, field, data),
+            'stddev': compute_std(field, data),
+            'mean': compute_std(field, data),
         } for field in fields},
-        'about_population': {
-            field: {
-                'stddev': compute_std(field, data),
-                'mean': compute_std(field, data),
-            } for field in fields},
         'salient_fields': [field for field in fields if
                            compute_stdev_from_mean(symbol, field, data) is not None and
                            compute_stdev_from_mean(symbol, field, data) != "infinity" and
                            compute_stdev_from_mean(symbol, field, data) > 2.0],
+        'neg_salient_fields': [field for field in fields if
+                           compute_stdev_from_mean(symbol, field, data) is not None and
+                           compute_stdev_from_mean(symbol, field, data) != "infinity" and
+                           compute_stdev_from_mean(symbol, field, data) < -2.0],
     }
 
 
@@ -72,14 +80,14 @@ def digest(symbol):
 #
 #     return data
 
-fields = ['price', 'ppe', 'volume', 'market_cap', 'div_yield']
+fields = ['price', 'ppe', 'volume', 'market_cap', 'div_yield', 'percent_change', 'avg_daily_volume', 'peg']
 
 
 def compile_data(symbols):
     data = {}
 
     for i, s in enumerate(symbols):
-        print("[ {}% ] Downloading {}...".format(i / len(symbols) * 100, s))
+        # print("[ {}% ] Downloading {}...".format(i / len(symbols) * 100, s))
         try:
             d = yf.Share(s)
             data[s] = {
@@ -87,7 +95,10 @@ def compile_data(symbols):
                 'ppe': d.get_price_earnings_ratio(),
                 'market_cap': d.get_market_cap(),
                 'div_yield': d.get_dividend_yield(),
-                'volume': d.get_volume()
+                'volume': d.get_volume(),
+                'percent_change': d.get_percent_change(),
+                'avg_daily_volume': d.get_avg_daily_volume(),
+                'peg': d.get_price_earnings_growth_ratio(),
             }
 
             for field in fields:
@@ -99,19 +110,22 @@ def compile_data(symbols):
                         a = float(a[:-1]) * 10 ** 6
                     elif a[-1] == 'K':
                         a = float(a[:-1]) * 10 ** 3
+                    elif a[-1] == '%':
+                        a = float(a[:-1])
                     else:
                         a = float(a)
 
                     data[s][field] = a
         except Exception as e:
-            print("error:", e)
+            pass
+            # print("error:", e)
 
     return data
 
 
 def compute_percentile(symbol, field, data):
     values = sort_symbols(field, data)
-    if symbol in values:
+    if symbol in values and len(values) > 1:
         i = values.index(symbol)
         return str(i / (len(values) - 1) * 100)
     else:
@@ -200,5 +214,8 @@ if __name__ == '__main__':
     # print("SECTOR:", get_sector(symbol))
     # print("RELATED:", get_related(symbol))
 
-    print("DIGEST =========================")
-    print(json.dumps(digest(symbol)))
+    # print("DIGEST =========================")
+    try:
+        print(json.dumps(digest(symbol)))
+    except Exception as e:
+        print(json.dumps({'error': str(e)}))
